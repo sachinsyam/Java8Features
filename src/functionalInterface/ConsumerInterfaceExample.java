@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class ConsumerInterfaceExample {
-    //A consumer interface has 2 built in methods, 1. accept    2. andThen
+    //    A consumer interface has 2 built in methods, 1. accept    2. andThen
 
     public void main(){
         System.out.println("Consumer Interface Example");
@@ -27,8 +27,30 @@ public class ConsumerInterfaceExample {
             }
         };
 
-        //using andThen function of consumer
+
+   //     using andThen function of consumer
         modifyList.andThen(printList).accept(numList);
+
+
+
+
+
+
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Apple");
+        stringList.add("Banana");
+
+        Consumer<List<String>> strPrint = list -> System.out.println(list);
+        Consumer<List<String>> strAdd = list ->{
+            for (String item: list) {
+                list.set(list.indexOf(item),item+" is a fruit");
+            }
+        };
+
+        strAdd.andThen(strPrint).accept(stringList);
+
     }
+
+
 
 }
