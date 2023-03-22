@@ -1,7 +1,11 @@
 package functionalInterface;
 
+import com.sun.jdi.ArrayReference;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class ConsumerInterfaceExample {
@@ -49,7 +53,41 @@ public class ConsumerInterfaceExample {
 
         strAdd.andThen(strPrint).accept(stringList);
 
+
+        //      BiConsumer
+
+        BiConsumer<String,Integer> biex = (a,b) -> System.out.println("String:"+a+" Integer:"+b);
+        biex.accept("hello",5);
+
+        BiConsumer<List<Integer>,List<Integer>> compareIntList = (list1,list2) -> {
+            if(list1.size() != list2.size()){
+                System.out.println("false");
+            }
+            else{
+                for (int i = 0; i < list1.size(); i++) {
+                    if(list1.get(i) != list2.get(i)){
+                        System.out.println("false at"+i);
+                        return;
+                    }
+
+
+                }
+
+                System.out.println("true");
+            }
+        };
+
+        List<Integer> numList1 = Arrays.asList(1,2,3,4,5);
+        List<Integer> numList2 = Arrays.asList(1,2,3,4,5);
+
+        compareIntList.accept(numList1,numList2);
+
+
+
+
     }
+
+
 
 
 
